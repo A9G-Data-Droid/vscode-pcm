@@ -1,205 +1,92 @@
 {
-  "scopeName": "source.pcm",
-  "comment": "Zeiss PCM language syntax highlighting.",
-  "fileTypes": ["pcm"],
-  "foldingStartMarker":
-    "^(?i:(selectCase|if|for))\\s*.*$",
-  "foldingStopMarker":
-    "^(?i:(endSelect|endif|next))\\s*.*$",
-  "keyEquivalent": "^~A",
   "name": "PCM",
+  "scopeName": "source.pcm",
+  "fileTypes": ["pcm"],
+  "uuid": "19402ea7-7dd3-407c-adf3-e662cb7ca2c2",
   "patterns": [
-    {
-      "match": "\\n",
-      "name": "meta.ending-space"
-    },
     {
       "include": "#round-brackets"
     },
     {
-      "begin": "^(?=\\t)",
-      "end": "(?=[^\\t])",
-      "name": "meta.leading-space",
-      "patterns": [
-        {
-          "captures": {
-            "1": {
-              "name": "meta.odd-tab.tabs"
-            },
-            "2": {
-              "name": "meta.even-tab.tabs"
-            }
-          },
-          "match": "(\\t)(\\t)?"
-        }
-      ]
+      "name": "comment.line.double-slash.pcm",
+      "match": "\/\/.*"
     },
     {
-      "begin": "^(?= )",
-      "end": "(?=[^ ])",
-      "name": "meta.leading-space",
-      "patterns": [
-        {
-          "captures": {
-            "1": {
-              "name": "meta.odd-tab.spaces"
-            },
-            "2": {
-              "name": "meta.even-tab.spaces"
-            }
-          },
-          "match": "(  )(  )?"
-        }
-      ]
+      "match": "\\b(if|then|else|endif|repeat|for|each|to|step|case|selectCase|caseElse|endSelect|until|next)\\b",
+      "name": "keyword.control.pcm"
     },
     {
-      "match":
-        "(?i:\\b(if|then|else|endif|repeat|for|each|to|step|case|selectCase|caseElse|endSelect|until|next)\\b)",
-      "name": "keyword.control.asp"
+      "match": "\\b(bitAnd|bitOr|bitXor)\\b",
+      "name": "keyword.operator.pcm"
     },
     {
-      "match": "(?i:\\b(bitAnd|bitOr|bitXor)\\b)",
-      "name": "keyword.operator.asp"
+      "match": "\\b(vector|point|calculatePointOnHelx)\\b",
+      "name": "storage.type.pcm"
     },
     {
-      "captures": {
-        "1": {
-          "name": "storage.type.asp"
-        },
-        "2": {
-          "name": "variable.other.bfeac.asp"
-        },
-        "3": {
-          "name": "meta.separator.comma.asp"
-        }
-      },
-      "match":
-        "(?i:(dim)\\s*(?:(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b)\\s*(,?)))",
-      "name": "variable.other.dim.asp"
+      "match": "\\b(list)\\b",
+      "name": "support.class.collection.pcm"
     },
     {
-      "match":
-        "(?i:\\s*\\b(vector|point|calculatePointOnHelx)\\b\\s*)",
-      "name": "storage.type.asp"
+      "match": "\\b(true|false)\\b",
+      "name": "constant.language.pcm"
     },
     {
-      "match": "(?i:\\b(Private|Public|Optional)\\b)",
-      "name": "storage.modifier.asp"
+      "match": "\\b(asc|chr|format|inStr|len|mid|strElement|val|subStr|text|val|getNominal|getActual)\\b",
+      "name": "support.function.pcm"
     },
     {
-      "match": "(?i:\\s*\\b(Empty|False|Nothing|Null|True)\\b)",
-      "name": "constant.language.asp"
+      "match": "\\b(squared|sqrt|exp|ln|log|mod|int|abs|round|sign|signWith-Zero|max|min|ord)\\b",
+      "name": "support.function.math.pcm"
+    },
+    {
+      "match": "\\b(rad|deg|angle|sin|sinRad|cos|cosRad|tan|tanRad|arcsin|arccos|radArccos|arctan|radArctan|arctan2)\\b",
+      "name": "support.function.trig.pcm"
+    },
+    {
+      "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f)?\\b",
+      "name": "constant.numeric.pcm"
+    },
+    {
+      "match": "\\b(actuals|actualInspection|applicationData|defaultInspections|defaultResults|defaultResults|inspections|programFiles|protform|results|workarea)\\b",
+      "name": "variable.parameter.pcm"
+    },
+    {
+      "match": "\\*|\\/|\\+|-|==|<=|>=|<>|<|>",
+      "name": "keyword.operator.pcm"
     },
     {
       "begin": "\"",
       "beginCaptures": [
         {
-          "name": "punctuation.definition.string.begin.asp"
+          "name": "punctuation.definition.string.begin.pcm"
         }
       ],
       "end": "\"",
       "endCaptures": [
         {
-          "name": "punctuation.definition.string.end.asp"
+          "name": "punctuation.definition.string.end.pcm"
         }
       ],
-      "name": "string.quoted.double.asp",
+      "name": "string.quoted.double.pcm",
       "patterns": [
         {
           "match": "\"\"",
-          "name": "constant.character.escape.apostrophe.asp"
+          "name": "constant.character.escape.apostrophe.pcm"
         }
       ]
-    },
-    {
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.variable.asp"
-        }
-      },
-      "match": "(\\$)[a-zA-Z_xf-xff][a-zA-Z0-9_xf-xff]*?\\b\\s*",
-      "name": "variable.other.asp"
-    },
-    {
-      "match":
-        "(?i:\\b(getNominal|getActual\\b)",
-      "name": "support.class.asp"
-    },
-    {
-      "match":
-        "(?i:\\b(list)\\b)",
-      "name": "support.class.collection.asp"
-    },
-    {
-      "match":
-        "(?i:\\b(true|false)\\b)",
-      "name": "support.constant.asp"
-    },
-    {
-      "match":
-        "(?i:\\b(asc|chr|format|inStr|len|mid|strElement|val|subStr|text|val)\\b)",
-      "name": "support.function.asp"
-    },
-    {
-      "match":
-        "(?i:\\b(squared|sqrt|exp|ln|log|mod|int|abs|round|sign|signWith-Zero|max|min|ord)\\b)",
-      "name": "support.function.event.asp"
-    },
-    {
-      "match":
-        "(?i:(?<=as )(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b))",
-      "name": "support.type.vb.asp"
-    },
-    {
-      "match":
-        "(?i:\\b(rad|deg|angle|sin|sinRad|cos|cosRad|tan|tanRad|arcsin|arccos|radArccos|arctan|radArctan|arctan2)\\b)",
-      "name": "support.function.vb.asp"
-    },
-    {
-      "match":
-        "-?\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f)?\\b",
-      "name": "constant.numeric.asp"
-    },
-    {
-      "match":
-        "(?i:\\s*\\b(actuals|actualInspection|applicationData|defaultInspections|defaultResults|defaultResults|inspections|programFiles|protform|results|workarea)\\b\\s*)",
-      "name": "support.type.vb.asp"
-    },
-    {
-      "captures": {
-        "1": {
-          "name": "entity.name.function.asp"
-        }
-      },
-      "match":
-        "(?i:(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b)(?=\\(\\)?))",
-      "name": "support.function.asp"
-    },
-    {
-      "match":
-        "(?i:((?<=(\\+|=|-|\\&|\\\\|/|<|>|\\(|,))\\s*\\b([a-zA-Z_xf-xff][a-zA-Z0-9_xf-xff]*?)\\b(?!(\\(|\\.))|\\b([a-zA-Z_xf-xff][a-zA-Z0-9_xf-xff]*?)\\b(?=\\s*(\\+|=|-|\\&|\\\\|/|<|>|\\(|\\)))))",
-      "name": "variable.other.asp"
-    },
-    {
-      "match":
-        "\/|\\+|-|\\*|\\*\\*|==|<=|>=|<>|<|>",
-      "name": "keyword.operator.js"
     }
   ],
   "repository": {
     "round-brackets": {
       "begin": "\\(",
-      "beginCaptures": [
-        {
-          "name": "punctuation.section.round-brackets.begin.asp"
-        }
-      ],
       "end": "\\)",
-      "endCaptures": [
-        {
-          "name": "punctuation.section.round-brackets.end.asp"
-        }
-      ],
+      "beginCaptures": {
+        "0": { "name": "punctuation.paren.open" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.paren.close" }
+      },
       "name": "meta.round-brackets",
       "patterns": [
         {
